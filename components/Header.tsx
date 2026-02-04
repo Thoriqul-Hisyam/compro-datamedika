@@ -16,11 +16,11 @@ import { Menu, X } from "lucide-react";
 import RequestDemoDialog from "@/components/RequestDemoDialog";
 
 const navItems = [
-  { title: "Beranda", href: "#" },
-  { title: "Fitur", href: "#features" },
-  { title: "Keunggulan", href: "#keunggulan" },
-  { title: "Testimoni", href: "#testimoni" },
-  { title: "Harga", href: "#pricing" },
+  { title: "Beranda", href: "/" },
+  { title: "Fitur", href: "/#features" },
+  { title: "Keunggulan", href: "/#keunggulan" },
+  { title: "Artikel", href: "/artikel" },
+  { title: "Karir", href: "/karir" },
 ];
 
 export default function Header() {

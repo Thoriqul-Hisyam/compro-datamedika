@@ -13,10 +13,10 @@ const footerLinks = {
     { label: "Dokumentasi", href: "#" },
   ],
   perusahaan: [
-    { label: "Tentang Kami", href: "#" },
-    { label: "Karir", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Kontak", href: "#" },
+    { label: "Tentang Kami", href: "/#keunggulan" },
+    { label: "Karir", href: "/karir" },
+    { label: "Artikel", href: "/artikel" },
+    { label: "Kontak", href: "https://wa.me/6285284005300" },
   ],
   legal: [
     { label: "Privacy Policy", href: "#" },

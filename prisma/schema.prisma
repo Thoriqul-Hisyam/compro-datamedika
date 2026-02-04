@@ -1,0 +1,123 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+
+}
+
+enum UserRole {
+  SUPERADMIN
+  ADMIN
+  EDITOR
+  HR
+}
+
+enum PublishStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  username  String   @unique
+  password  String
+  role      UserRole @default(EDITOR)
+
+  articles  Article[]
+  careers   Career[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Article {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  content     String        @db.Text
+  status      PublishStatus @default(DRAFT)
+
+  categories  ArticleToCategory[]
+
+  authorId    String
+  author      User          @relation(fields: [authorId], references: [id])
+
+  image           String?
+  metaTitle       String?
+  metaDescription String?       @db.Text
+
+  createdAt       DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model ArticleCategory {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+
+  articles  ArticleToCategory[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model ArticleToCategory {
+  articleId   String
+  article     Article         @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  
+  categoryId  String
+  category    ArticleCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  assignedAt  DateTime        @default(now())
+
+  @@id([articleId, categoryId])
+}
+
+
+
+model Career {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  description String        @db.Text
+  location    String
+  type        String        // Full-time, Contract, Internship
+  status      PublishStatus @default(DRAFT)
+
+  createdById String
+  createdBy   User          @relation(fields: [createdById], references: [id])
+
+  image           String?
+  metaTitle       String?
+  metaDescription String?       @db.Text
+
+  applications CareerApplication[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CareerApplication {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  cvFile    String
+  message   String?
+
+  careerId  String
+  career    Career  @relation(fields: [careerId], references: [id])
+
+  createdAt DateTime @default(now())
+}

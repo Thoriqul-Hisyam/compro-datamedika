@@ -12,8 +12,8 @@ const partners = [
 
 const reviews = [
   {
-    name: "dr. Robbyansyah Sp.PD",
-    role: "Direktur",
+    name: "Robbyansyah",
+    role: "IT",
     hospital: "RS Pusdikkes Jakarta",
     text: "SIMRS.ID sangat kompatibel dengan kebutuhan modern rumah sakit kami. Sistemnya intuitif, mudah dikustomisasi, dan sangat membantu efisiensi pelayanan medis.",
     tag: "Highly Recommended",
@@ -22,7 +22,7 @@ const reviews = [
     gradient: "from-pink-500 to-rose-500",
   },
   {
-    name: "Rendika Pratama, S.Kom",
+    name: "Rendika",
     role: "Kepala IT",
     hospital: "RS Mitra Medika",
     text: "Sudah 2 tahun berjalan dan performanya sangat stabil. Tim supportnya luar biasa responsif, setiap kendala teknis selalu diselesaikan dengan cepat.",
@@ -32,7 +32,7 @@ const reviews = [
     gradient: "from-cyan-500 to-blue-500",
   },
   {
-    name: "H. Arbain, SE",
+    name: "Arbain",
     role: "Kepala Operasional",
     hospital: "RSUD Tanjabtim",
     text: "Fitur bridging BPJS-nya sangat seamless. Klaim jadi jauh lebih cepat dan minim error. Investasi terbaik untuk digitalisasi rumah sakit daerah.",
