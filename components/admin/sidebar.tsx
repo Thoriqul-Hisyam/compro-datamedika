@@ -74,15 +74,7 @@ export default function Sidebar({ className, isMobile, onClose }: { className?: 
         })}
       </nav>
 
-      <div className="p-4 mt-auto">
-        <div className="bg-gradient-to-br from-slate-50 to-slate-100 p-4 rounded-2xl border border-slate-200">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Status Sistem</p>
-            <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-xs font-bold text-slate-700">Online & Terkoneksi</span>
-            </div>
-        </div>
-      </div>
+      
     </aside>
   );
 }

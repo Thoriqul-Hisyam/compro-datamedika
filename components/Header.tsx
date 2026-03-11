@@ -19,6 +19,9 @@ const navItems = [
   { title: "Beranda", href: "/" },
   { title: "Fitur", href: "/#features" },
   { title: "Keunggulan", href: "/#keunggulan" },
+  { title: "Harga", href: "/#pricing" },
+  { title: "Testimoni", href: "/#testimoni" },
+  { title: "Whitelabel", href: "/whitelabel" },
   { title: "Artikel", href: "/artikel" },
   { title: "Karir", href: "/karir" },
 ];

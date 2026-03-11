@@ -19,7 +19,10 @@ interface RequestDemoDialogProps {
   className?: string; // Add className prop to support pass-through styling
 }
 
-export default function RequestDemoDialog({ children, className }: RequestDemoDialogProps) {
+export default function RequestDemoDialog({
+  children,
+  className,
+}: RequestDemoDialogProps) {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -34,12 +37,12 @@ export default function RequestDemoDialog({ children, className }: RequestDemoDi
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Construct WhatsApp message
-    const message = `Halo tim Sales, saya tertarik demo aplikasi.\n\nNama: ${formData.name}\nEmail: ${formData.email}\nFaskes: ${formData.faskes}`;
+    const message = `Halo tim Sales, saya tertarik demo aplikasi.\n\nNama: ${formData.name}\nEmail: ${formData.email}\nPerusahaan / Faskes: ${formData.faskes}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/6285284005300?text=${encodedMessage}`;
-    
+
     // Open WhatsApp
     window.open(whatsappUrl, "_blank");
     setOpen(false);
@@ -58,17 +61,29 @@ export default function RequestDemoDialog({ children, className }: RequestDemoDi
         <DialogHeader>
           <DialogTitle>Request Demo Aplikasi</DialogTitle>
           <DialogDescription>
-            Isi formulir di bawah ini untuk terhubung dengan tim sales kami via WhatsApp.
+            Isi formulir di bawah ini untuk terhubung dengan tim sales kami via
+            WhatsApp.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="grid gap-4 py-4">
           <div className="grid gap-2">
-            <Label htmlFor="name">Nama Lengkap</Label>
+            <Label htmlFor="name">Nama Lengkap *</Label>
             <Input
               id="name"
               name="name"
               placeholder="Masukkan nama Anda"
               value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="faskes">Perusahaan / Faskes *</Label>
+            <Input
+              id="faskes"
+              name="faskes"
+              placeholder="Nama Perusahaan / Faskes"
+              value={formData.faskes}
               onChange={handleChange}
               required
             />
@@ -82,21 +97,13 @@ export default function RequestDemoDialog({ children, className }: RequestDemoDi
               placeholder="nama@email.com"
               value={formData.email}
               onChange={handleChange}
-              required
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="faskes">Asal Faskes</Label>
-            <Input
-              id="faskes"
-              name="faskes"
-              placeholder="Nama Klinik / Rumah Sakit"
-              value={formData.faskes}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <Button type="submit" className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white">
+
+          <Button
+            type="submit"
+            className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white"
+          >
             <MessageCircle className="mr-2 h-4 w-4" />
             Lanjut ke WhatsApp
           </Button>
