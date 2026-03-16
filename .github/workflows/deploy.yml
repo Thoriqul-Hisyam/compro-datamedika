@@ -40,7 +40,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            cd /home/developer/compro-datamedika || mkdir -p /home/developer/compro-datamedika && cd /home/developer/compro-datamedika
+            cd /home/ubuntu/compro-datamedika || mkdir -p /home/ubuntu/compro-datamedika && cd /home/ubuntu/compro-datamedika
             
             # Quoted 'EOF' mencegah bash mencoba memproses karakter $ di password
             cat <<'EOF' > docker-compose.yml
