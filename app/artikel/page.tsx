@@ -9,6 +9,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Artikel & Berita - SIMRS.ID",
   description: "Dapatkan informasi terbaru seputar teknologi kesehatan dan perkembangan SIMRS.ID.",

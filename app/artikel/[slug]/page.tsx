@@ -9,6 +9,8 @@ import Footer from "@/components/Footer";
 import ReadingProgressBar from "@/components/public/ReadingProgressBar";
 import ArticleActions from "@/components/public/ArticleActions";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article: any = await getPublicArticleBySlug(slug);
