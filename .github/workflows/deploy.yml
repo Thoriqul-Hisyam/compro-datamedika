@@ -60,8 +60,8 @@ jobs:
                 image: mysql:8
                 restart: always
                 environment:
-                  MYSQL_USER: compro
-                  MYSQL_PASSWORD: BZW3cJTSj7DP7pih
+                  MYSQL_USER: ${{ secrets.DB_USER }}
+                  MYSQL_PASSWORD: "${{ secrets.DB_PASSWORD }}"
                   MYSQL_DATABASE: compro_datamedika
                 volumes:
                   - mysql_data:/var/lib/mysql
@@ -74,7 +74,7 @@ jobs:
               mysql_data:
             EOF
 
-            /usr/bin/docker compose pull
-            /usr/bin/docker compose down
-            /usr/bin/docker compose up -d
-            /usr/bin/docker image prune -f
+            docker compose pull
+            docker compose down
+            docker compose up -d
+            docker image prune -f
