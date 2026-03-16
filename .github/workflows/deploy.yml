@@ -42,14 +42,18 @@ jobs:
           script: |
             cd /home/developer/compro-datamedika || mkdir -p /home/developer/compro-datamedika && cd /home/developer/compro-datamedika
             
-            # Buat file .env secara aman dengan mengganti $ menjadi $$ untuk docker-compose
-            # Quoted 'EOF' memastikan shell tidak melakukan ekspansi pada isi file
-            cat <<'EOF' > .env.prod
-            DATABASE_URL=${{ replace(secrets.DATABASE_URL, '$', '$$') }}
-            JWT_SECRET=${{ replace(secrets.JWT_SECRET, '$', '$$') }}
-            DB_ROOT_PASSWORD=${{ replace(secrets.DB_ROOT_PASSWORD, '$', '$$') }}
+            # Escape character $ menjadi $$ agar tidak dianggap variabel oleh docker-compose
+            DB_URL=$(echo "${{ secrets.DATABASE_URL }}" | sed 's/\$/\$\$/g')
+            JWT_SEC=$(echo "${{ secrets.JWT_SECRET }}" | sed 's/\$/\$\$/g')
+            DB_ROOT_PASS=$(echo "${{ secrets.DB_ROOT_PASSWORD }}" | sed 's/\$/\$\$/g')
+            DB_PASS=$(echo "${{ secrets.DB_PASSWORD }}" | sed 's/\$/\$\$/g')
+
+            cat <<EOF > .env.prod
+            DATABASE_URL=${DB_URL}
+            JWT_SECRET=${JWT_SEC}
+            DB_ROOT_PASSWORD=${DB_ROOT_PASS}
             DB_USER=${{ secrets.DB_USER }}
-            DB_PASSWORD=${{ replace(secrets.DB_PASSWORD, '$', '$$') }}
+            DB_PASSWORD=${DB_PASS}
             EOF
 
             cat <<'EOF' > docker-compose.yml
