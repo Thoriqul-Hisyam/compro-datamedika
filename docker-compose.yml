@@ -8,6 +8,8 @@ services:
         condition: service_healthy
     env_file:
       - .env
+    volumes:
+      - uploads_data:/app/public/uploads
     # We override JWT_SECRET here to escape the $ for docker-compose interpolation
     # This prevents the "Rcr variable not set" warning while keeping .env compatible with Next.js
     environment:
@@ -32,3 +34,4 @@ services:
 
 volumes:
   mysql_data:
+  uploads_data:

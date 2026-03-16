@@ -42,6 +42,10 @@ jobs:
           script: |
             cd /home/developer/compro-datamedika || mkdir -p /home/developer/compro-datamedika && cd /home/developer/compro-datamedika
             
+            # Buat folder uploads dan pastikan permission-nya benar agar bisa ditulis oleh user di dalam Docker
+            mkdir -p uploads
+            chmod 777 uploads
+
             # Escape character $ menjadi $$ agar tidak dianggap variabel oleh docker-compose
             DB_URL=$(echo "${{ secrets.DATABASE_URL }}" | sed 's/\$/\$\$/g')
             JWT_SEC=$(echo "${{ secrets.JWT_SECRET }}" | sed 's/\$/\$\$/g')
@@ -65,6 +69,8 @@ jobs:
                 restart: always
                 env_file:
                   - .env.prod
+                volumes:
+                  - ./uploads:/app/public/uploads
                 depends_on:
                   db:
                     condition: service_healthy
