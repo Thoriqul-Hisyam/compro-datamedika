@@ -40,7 +40,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            cd /home/ubuntu/compro-datamedika || mkdir -p /home/ubuntu/compro-datamedika && cd /home/ubuntu/compro-datamedika
+            cd /home/developer/compro-datamedika || mkdir -p /home/developer/compro-datamedika && cd /home/developer/compro-datamedika
             
             # Quoted 'EOF' mencegah bash mencoba memproses karakter $ di password
             cat <<'EOF' > docker-compose.yml
@@ -60,8 +60,9 @@ jobs:
                 image: mysql:8
                 restart: always
                 environment:
-                  MYSQL_ROOT_PASSWORD: root
-                  MYSQL_DATABASE: compro-datamedika
+                  MYSQL_USER: compro
+                  MYSQL_PASSWORD: BZW3cJTSj7DP7pih
+                  MYSQL_DATABASE: compro_datamedika
                 volumes:
                   - mysql_data:/var/lib/mysql
                 healthcheck:
@@ -73,7 +74,7 @@ jobs:
               mysql_data:
             EOF
 
-            docker compose pull
-            docker compose down
-            docker compose up -d
-            docker image prune -f
+            /usr/bin/docker compose pull
+            /usr/bin/docker compose down
+            /usr/bin/docker compose up -d
+            /usr/bin/docker image prune -f

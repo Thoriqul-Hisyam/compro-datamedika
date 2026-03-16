@@ -8,7 +8,7 @@ echo "Waiting for database to be ready..."
 # if the DB isn't ready yet, or add a more robust check.
 
 echo "Synchronizing database schema..."
-prisma db push --accept-data-loss --skip-generate
+prisma db push --skip-generate
 
 echo "Seeding database..."
 prisma db seed
