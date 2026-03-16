@@ -38,7 +38,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: 2255
+          port: 22
           script: |
             cd /www/wwwroot/compro-datamedika || mkdir -p /www/wwwroot/compro-datamedika && cd /www/wwwroot/compro-datamedika
             
